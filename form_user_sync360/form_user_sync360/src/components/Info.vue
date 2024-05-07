@@ -38,7 +38,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(usuario, index) in usuarios" :key="index" class="shadow-sm p-3 mb-5 bg-white rounded" :class="{ 'table-primary': usuario === usuarioSelecionado }">
+              <tr v-for="(usuario, index) in usuarios" :key="index" class="shadow-sm p-3 mb-5 bg-white rounded" :class="{ 'table-primary': usuario === usuarioSelecionado }" @click="selecionarUsuario(usuario)">
                 <td :style="{ transform: usuario === usuarioSelecionado ? 'scale(1.1)' : 'none' }"><img :src="usuario.imagemPerfil" alt="Imagem de Perfil" class="img-fluid rounded-circle shadow-sm p-2 bg-white rounded" style="width: 50px; height: 50px; object-fit: cover; vertical-align: middle;"></td>
                 <td>{{ usuario.nome }}</td>
                 <td>{{ usuario.idade }}</td>
@@ -48,10 +48,10 @@
                 
                 <td>
                   <div class="d-flex justify-content-center">
-                    <button @click="selecionarUsuario(usuario)" class="btn btn-primary" style="margin-right: 0.5rem;">
+                    <button class="btn btn-primary" style="margin-right: 0.5rem;" @click.stop="editarUsuario(usuario)">
                       <img src="../assets/Edit.svg" alt="Editar" style="width: 1rem; height: 1rem;">
                     </button>
-                    <button @click="excluirUsuario(index)" class="btn btn-danger" style="margin-left: 0.5rem;">
+                    <button class="btn btn-danger" style="margin-left: 0.5rem;" @click.stop="excluirUsuario(index)">
                       <img src="../assets/Close-White.svg" alt="Excluir" style="width: 1rem; height: 1rem;">
                     </button>
                   </div>
@@ -134,7 +134,7 @@ export default {
       this.imagemPerfil = usuario.imagemPerfil;
     },
     editarUsuario(usuario) {
-      // Remova esta função, pois não é mais necessária aqui
+      // Implemente sua lógica de edição aqui
     },
     salvarEdicaoUsuario(dadosAtualizados) {
       this.usuarioSelecionado.nome = dadosAtualizados.nome;
